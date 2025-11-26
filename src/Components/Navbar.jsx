@@ -1,15 +1,18 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef  } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   const menuRef = useRef(null);
-  const navRefsMbl = useRef([]);
-  const navRefsDes = useRef([]);
-  // Desktop Menu
-  let menuItems = ["Home", "About", "Skills", "Projects", "Contact me"];
 
+  // Navbar hide on scroll down, show on scroll up
+  
+ 
+
+  let menuItems = ["Home", "About", "Skills", "Projects", "Contact me"];
+// Mobile Menu Hover
+   const navRefsMbl = useRef([]);
   let onMouseEnter_1 = (mbl) => {
     gsap.fromTo(
       mbl,
@@ -31,6 +34,8 @@ const Navbar = () => {
       ease: "power2.in",
     });
   };
+  // Desktop Menu Hover
+  const navRefsDes = useRef([]);
   let onMouseEnter_2 = (des) => {
     gsap.fromTo(
       des,
@@ -52,7 +57,8 @@ const Navbar = () => {
       ease: "power2.in",
     });
   };
-  // Mobile Menu
+
+  // Mobile Menu 
   useGSAP(() => {
     if (isOpen) {
       gsap.to(menuRef.current, {
@@ -75,7 +81,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="NavBAr relative flex justify-between h-full w-screen px-5 min-[1024px]:pl-15 pr-0 py-4 font-neue">
+      <div  className={`NavBAr relative flex justify-between h-full w-screen px-5 min-[1024px]:pl-13 pr-0 py-4 font-neue `}>
         {/* Desktop MENU  */}
         {isOpen ? (
           <div className="Logo">
@@ -85,7 +91,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="Logo">
-            <h1 className="min-[1024px]:text-3xl text-xl font-bold">Fahad</h1>
+            <h1 className="min-[1024px]:text-4xl text-xl font-bold">Fahad</h1>
           </div>
         )}
 
@@ -178,8 +184,7 @@ const Navbar = () => {
       <div
         ref={menuRef}
         className="mobileNav fixed top-0  left-0 h-full w-full opacity-0 scrollbar-none  min-[1024px]:hidden"
-       >
-        
+      >
         <div className="navItems h-full w-full flex flex-col bg-[#212121] text-2xl">
           <div className=" border mt-30 border-zinc-600 w-full  "></div>
           {["HOME", "ABOUT", "SKILLS", "PROJECT", "CONTACT"].map(
