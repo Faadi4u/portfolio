@@ -8,18 +8,21 @@ const HeroSection = () => {
       <div className="flex flex-col">
         <div className="title flex justify-between items-center">
           <div className="itemx-center">
-            <h1 className="pt-10 pl-13 tracking-tighter text-[60px]/20 text-[#212121] font-bold ">
-              Full Stack Developer <br />
-              <span className="px-5 py-2 bg-red-700/70 rounded-2xl text-[50px]/20 text-white">
+            <h1 className="pt-20 pl-13 tracking-tighter text-[60px]/15 text-[#212121] font-bold ">
+              <span className="text-[40px]">Hey, I’m Fahad 👋</span>
+              <br />
+              A Full Stack Developer <br />
+              <span className="px-5 py-2 bg-red-600/70 rounded-2xl text-[50px]/20 text-white">
                 Crafting
               </span>{" "}
               modern and <br />
               interactive web experiences
             </h1>
-            <p className="text-2xl pl-13 pt-5  text-[#5c5c5c]">
-              I build scalable applications using React, Next.js, <br />
-              TypeScript, Node.js & MongoDB — with GSAP for animations.
-            </p>
+            {/* <p className="text-lg pl-13   text-[#5c5c5c]">
+              I build scalable, high-performance applications using React,
+              <br /> Next.js, TypeScript, Node.js, and MongoDB — powered by{" "}
+              <br /> smooth GSAP animations.
+            </p> */}
           </div>
           <div>
             <svg width="53.08" height="171.358">
@@ -34,21 +37,37 @@ const HeroSection = () => {
             </svg>
           </div>
         </div>
-        <div className="cta pt-7 pl-[52px] flex justify-center items-center w-fit gap-2">
-          <button className="px-3  py-0.5 text-xl border-[#343434] border-[1.5px] rounded-2xl text-[#343434] hover:bg-[#212121] hover:text-white">SEE MY WORK</button>
-          <button className="px-3  py-0.5 text-xl border-[#343434] border-[1.5px] rounded-2xl text-[#343434] hover:bg-[#212121] hover:text-white">DOWNLOAD CV</button>
-          
-        </div>
       </div>
-      <div className=" text-zinc-400 pt-8">
+      <div className="CTA pl-13 pt-5  flex justify-center w-fit gap-2">
+        <button className="mb-2 px-2.5  py-0.5 text-sm/ font-extralight border-[#343434] border-[1.5px] rounded-2xl text-[#343434] hover:bg-[#212121] hover:text-white">
+          SEE MY WORK
+        </button>
+        <button className="mb-2 px-2.5  py-0.5 text-sm/ font-extralight border-[#343434] border-[1.5px] rounded-2xl text-[#343434] hover:bg-[#212121] hover:text-white">
+          ABOUT ME
+        </button>
+      </div>
+      <div className=" text-zinc-400 pt-22">
         <hr />
       </div>
-      <div className="slider px-13">
-        <Marquee>
-          <h1 className="text-[#212121]   text-8xl font-extrabold overflow-hidden  ">
-            I AM A FULL STACK DEVELOPER-
-          </h1>
-        </Marquee>
+      <div className="pt-4 px-10 flex justify-between items-center w-full text-center  gap-2">
+        <div className="projectBtn">
+          <p className="text-sm text-[#343434] font-extralight ">
+            Full-stack projects focused on performance,
+            <br /> clean UI, and smooth animations.
+          </p>
+        </div>
+        <div className="aboutBtn">
+          <p className="text-sm text-[#343434] font-extralight ">
+            I'm Fahad, a Full Stack Developer who builds fast,
+            <br /> user-friendly, and scalable web applications using the MERN
+            stack.
+          </p>
+        </div>
+        <div className="projectBtn">
+          <button className="px-2.5  py-0.5 text-sm/ font-extralight border-[#343434] border-[1.5px] rounded-2xl text-[#343434] hover:bg-[#212121] hover:text-white">
+            DOWNLOAD CV
+          </button>
+        </div>
       </div>
     </div>
   );

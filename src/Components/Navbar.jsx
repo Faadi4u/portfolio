@@ -1,4 +1,4 @@
-import React, { useState, useRef  } from "react";
+import React, { useState, useRef ,useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -7,7 +7,54 @@ const Navbar = () => {
   const menuRef = useRef(null);
 
   // Navbar hide on scroll down, show on scroll up
-  
+    const navbarRef = useRef(null);
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+  const handleScroll = () => {
+    if (window.innerWidth < 1024) {
+      // Disable scrolled state on mobile
+      setScrolled(false);
+      return;
+    }
+
+    const currentScrollY = window.scrollY;
+
+    // Check if user has scrolled
+    if (currentScrollY > 10) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+
+    // Desktop hide/show animation
+    if (currentScrollY > lastScrollY) {
+      gsap.to(navbarRef.current, {
+        y: "-100%",
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    } else {
+      gsap.to(navbarRef.current, {
+        y: "0%",
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    }
+
+    setLastScrollY(currentScrollY);
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  window.addEventListener("resize", handleScroll);
+
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+    window.removeEventListener("resize", handleScroll);
+  };
+}, [lastScrollY]);
+
+
  
 
   let menuItems = ["Home", "About", "Skills", "Projects", "Contact me"];
@@ -81,7 +128,18 @@ const Navbar = () => {
 
   return (
     <>
-      <div  className={`NavBAr relative flex justify-between h-full w-screen px-5 min-[1024px]:pl-13 pr-0 py-4 font-neue `}>
+    {/* ref={navbarRef}
+            className={} */}
+            
+      <div
+  ref={navbarRef}
+  className={`
+    NavBAr fixed top-0 z-20 left-0 flex justify-between w-screen px-5 min-[1024px]:pl-12 pr-0 py-4 font-neue
+    ${window.innerWidth >= 1024 && scrolled ? "z-20 bg-transparent backdrop-filter backdrop-blur-[5px]" : "bg-transparent backdrop-filter backdrop-blur-[5px]"}
+  `}
+>
+
+
         {/* Desktop MENU  */}
         {isOpen ? (
           <div className="Logo">
@@ -91,7 +149,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="Logo">
-            <h1 className="min-[1024px]:text-4xl text-xl font-bold">Fahad</h1>
+            <h1 className="min-[1024px]:text-5xl text-3xl font-bold">Fahad</h1>
           </div>
         )}
 
@@ -185,7 +243,7 @@ const Navbar = () => {
         ref={menuRef}
         className="mobileNav fixed top-0  left-0 h-full w-full opacity-0 scrollbar-none  min-[1024px]:hidden"
       >
-        <div className="navItems h-full w-full flex flex-col bg-[#212121] text-2xl">
+        <div className={`navItems h-full w-full flex flex-col bg-[#212121] text-2xl `}>
           <div className=" border mt-30 border-zinc-600 w-full  "></div>
           {["HOME", "ABOUT", "SKILLS", "PROJECT", "CONTACT"].map(
             (items, index) => (
