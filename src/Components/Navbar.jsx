@@ -149,7 +149,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="Logo">
-            <h1 className="min-[1024px]:text-5xl text-3xl font-bold">Fahad</h1>
+            <h1 className="min-[1024px]:text-5xl text-4xl font-bold">Fahad</h1>
           </div>
         )}
 
