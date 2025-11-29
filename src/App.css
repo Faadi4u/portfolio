@@ -25,6 +25,9 @@
   
   
 }
+html,body{
+  scroll-behavior: smooth;
+}
 .grid-overlay {
   background-image:
     repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.080), rgba(0,0,0,0.05) 1px, transparent 1px, transparent 40px),

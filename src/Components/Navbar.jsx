@@ -1,4 +1,4 @@
-import React, { useState, useRef ,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -7,59 +7,63 @@ const Navbar = () => {
   const menuRef = useRef(null);
 
   // Navbar hide on scroll down, show on scroll up
-    const navbarRef = useRef(null);
+  const navbarRef = useRef(null);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
-  const handleScroll = () => {
-    if (window.innerWidth < 1024) {
-      // Disable scrolled state on mobile
-      setScrolled(false);
-      return;
-    }
+    const handleScroll = () => {
+      if (window.innerWidth < 1024) {
+        // Disable scrolled state on mobile
+        setScrolled(false);
+        return;
+      }
 
-    const currentScrollY = window.scrollY;
+      const currentScrollY = window.scrollY;
 
-    // Check if user has scrolled
-    if (currentScrollY > 10) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
+      // Check if user has scrolled
+      if (currentScrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
 
-    // Desktop hide/show animation
-    if (currentScrollY > lastScrollY) {
-      gsap.to(navbarRef.current, {
-        y: "-100%",
-        duration: 0.3,
-        ease: "power2.out",
-      });
-    } else {
-      gsap.to(navbarRef.current, {
-        y: "0%",
-        duration: 0.3,
-        ease: "power2.out",
-      });
-    }
+      // Desktop hide/show animation
+      if (currentScrollY > lastScrollY) {
+        gsap.to(navbarRef.current, {
+          y: "-100%",
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      } else {
+        gsap.to(navbarRef.current, {
+          y: "0%",
+          duration: 0.3,
+          ease: "power2.out",
+        });
+      }
 
-    setLastScrollY(currentScrollY);
-  };
+      setLastScrollY(currentScrollY);
+    };
 
-  window.addEventListener("scroll", handleScroll);
-  window.addEventListener("resize", handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
 
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-    window.removeEventListener("resize", handleScroll);
-  };
-}, [lastScrollY]);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [lastScrollY]);
 
+  const menuItems = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Projects", href: "#projects" },
+    { name: "Contact me", href: "#contact" },
+  ];
 
- 
-
-  let menuItems = ["Home", "About", "Skills", "Projects", "Contact me"];
-// Mobile Menu Hover
-   const navRefsMbl = useRef([]);
+  // Mobile Menu Hover
+  const navRefsMbl = useRef([]);
   let onMouseEnter_1 = (mbl) => {
     gsap.fromTo(
       mbl,
@@ -105,7 +109,7 @@ const Navbar = () => {
     });
   };
 
-  // Mobile Menu 
+  // Mobile Menu
   useGSAP(() => {
     if (isOpen) {
       gsap.to(menuRef.current, {
@@ -128,18 +132,20 @@ const Navbar = () => {
 
   return (
     <>
-    {/* ref={navbarRef}
+      {/* ref={navbarRef}
             className={} */}
-            
+
       <div
-  ref={navbarRef}
-  className={`
-    NavBAr fixed top-0 z-20 left-0 flex justify-between w-screen px-5 min-[1024px]:pl-12 pr-0 py-4 font-neue
-    ${window.innerWidth >= 1024 && scrolled ? "z-20 bg-transparent backdrop-filter backdrop-blur-[5px]" : "bg-transparent backdrop-filter backdrop-blur-[5px]"}
+        ref={navbarRef}
+        className={`
+    NavBAr shadow-2xs fixed top-0 z-20 left-0 flex justify-between w-screen px-5 min-[1024px]:pl-12 pr-0 py-4 font-neue
+    ${
+      window.innerWidth >= 1024 && scrolled
+        ? "z-20 bg-transparent backdrop-filter backdrop-blur-[5px]"
+        : "bg-transparent backdrop-filter backdrop-blur-[5px]"
+    }
   `}
->
-
-
+      >
         {/* Desktop MENU  */}
         {isOpen ? (
           <div className="Logo">
@@ -155,24 +161,19 @@ const Navbar = () => {
 
         <div className="NavElems flex items-center min-[1024px]:gap-3 gap-2 ">
           <div className="navItems flex gap-10">
-            {menuItems.map((items, index) => (
+            {menuItems.map((item, index) => (
               <ul
                 className={`flex overflow-hidden max-[1024px]:hidden ${
                   index === 4 && "ml-36"
                 }`}
                 key={index}
-                href=""
               >
                 <li
-                  onMouseEnter={() => {
-                    onMouseEnter_2(navRefsDes.current[index]);
-                  }}
-                  onMouseLeave={() => {
-                    onMouseLeave_2(navRefsDes.current[index]);
-                  }}
+                  onMouseEnter={() => onMouseEnter_2(navRefsDes.current[index])}
+                  onMouseLeave={() => onMouseLeave_2(navRefsDes.current[index])}
                   className="flex flex-col cursor-pointer"
                 >
-                  {items}
+                  <a href={item.href}>{item.name}</a>
                   <span
                     ref={(des) => {
                       navRefsDes.current[index] = des;
@@ -241,9 +242,11 @@ const Navbar = () => {
       {/* MOBILE MENU  */}
       <div
         ref={menuRef}
-        className="mobileNav fixed top-0  left-0 h-full w-full opacity-0 scrollbar-none  min-[1024px]:hidden"
+        className="mobileNav z-10 fixed top-0  left-0 h-full w-full opacity-0 scrollbar-none  min-[1024px]:hidden"
       >
-        <div className={`navItems h-full w-full flex flex-col bg-[#212121] text-2xl `}>
+        <div
+          className={`navItems h-full w-full flex flex-col bg-[#212121] text-2xl `}
+        >
           <div className=" border mt-30 border-zinc-600 w-full  "></div>
           {["HOME", "ABOUT", "SKILLS", "PROJECT", "CONTACT"].map(
             (items, index) => (
