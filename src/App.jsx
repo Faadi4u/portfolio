@@ -7,7 +7,7 @@ import About from "./Components/About.jsx";
 import Skills from "./Components/Skills.jsx";
 import Projects from "./Components/Projects.jsx";
 import FAQ from "./Components/FAQ.jsx";
-// import Contact from "./Components/Contact.jsx";
+import Contact from "./Components/Contact.jsx";
 // import Footer from "./Components/Footer.jsx";
 
 const App = () => {
@@ -59,12 +59,12 @@ const App = () => {
       </div>
       
       {/* Contact Section  */}
-      {/* <div className="font-grotesk relative  min-h-screen bg-white">
+      <div className="font-grotesk relative  min-h-screen bg-white">
         <div class=" absolute inset-0 grid-overlay pointer-events-none"></div>
         <div className="">
           <Contact/>
         </div>
-      </div> */}
+      </div>
 
       {/* Footer Section  */}
       {/* <div className="font-grotesk relative  bg-white">
