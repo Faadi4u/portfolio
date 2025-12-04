@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
+  
   const menuRef = useRef(null);
 
   // Navbar hide on scroll down, show on scroll up
@@ -130,6 +131,17 @@ const Navbar = () => {
     }
   }, [isOpen]);
 
+  //Dark mode
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
+
   return (
     <>
       {/* ref={navbarRef}
@@ -138,7 +150,7 @@ const Navbar = () => {
       <div
         ref={navbarRef}
         className={`
-    NavBAr shadow-2xs fixed top-0 z-20 left-0 flex justify-between w-screen px-5 min-[1024px]:pl-12 pr-0 py-4 font-neue
+    NavBAr  shadow-2xs fixed top-0 z-20 left-0 flex justify-between w-screen px-5 min-[1024px]:pl-12 pr-0 py-4 font-neue
     ${
       window.innerWidth >= 1024 && scrolled
         ? "z-20 bg-transparent backdrop-filter backdrop-blur-[5px]"
@@ -155,7 +167,7 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="Logo">
-            <h1 className="min-[1024px]:text-5xl text-4xl font-bold">Fahad</h1>
+            <h1 className="dark:bg-amber-200 min-[1024px]:text-5xl text-4xl font-bold">Fahad</h1>
           </div>
         )}
 
@@ -225,7 +237,13 @@ const Navbar = () => {
               <p className="min-[1024px]:group-hover:block hidden">DARK MODE</p>
             </button>
           ) : (
-            <button className="group cursor-pointer bg-black pr-5 pl-2 py-2 rounded-l-xl text-white">
+            <button
+            onClick={() => {
+              setDarkMode(!darkMode)
+              console.log("okkk");}
+              
+            }
+             className="group cursor-pointer bg-black pr-5 pl-2 py-2 rounded-l-xl text-white">
               <svg
                 className="h-5 "
                 xmlns="http://www.w3.org/2000/svg"
@@ -248,36 +266,33 @@ const Navbar = () => {
           className={`navItems h-full w-full flex flex-col bg-[#212121] text-2xl `}
         >
           <div className=" border mt-30 border-zinc-600 w-full  "></div>
-          {["HOME", "ABOUT", "SKILLS", "PROJECT", "CONTACT"].map(
-            (items, index) => (
-              <ul
-                className={
-                  index < 10 &&
-                  "w-fit overflow-hidden max-[768px]:text-[64px]/6 tracking-tighter text-[80px]/10 font-extrabold ml-4.5 text-white "
-                }
-                key={index}
-                href=""
+          {menuItems.map((items, index) => (
+            <ul
+              className={
+                index < 10 &&
+                "w-fit overflow-hidden max-[768px]:text-[64px]/6 tracking-tighter text-[80px]/10 font-extrabold ml-4.5 text-white "
+              }
+              key={index}
+            >
+              <li
+                onMouseEnter={() => {
+                  onMouseEnter_1(navRefsMbl.current[index]);
+                }}
+                onMouseLeave={() => {
+                  onMouseLeave_1(navRefsMbl.current[index]);
+                }}
+                className="font-grotesk flex flex-col mt-5  cursor-pointer"
               >
-                <li
-                  onMouseEnter={() => {
-                    onMouseEnter_1(navRefsMbl.current[index]);
+                <a onClick={()=>{setOpen(false)}} href={items.href}>{items.name}</a>
+                <span
+                  ref={(mbl) => {
+                    navRefsMbl.current[index] = mbl;
                   }}
-                  onMouseLeave={() => {
-                    onMouseLeave_1(navRefsMbl.current[index]);
-                  }}
-                  className="font-grotesk flex flex-col mt-5  cursor-pointer"
-                >
-                  {items}
-                  <span
-                    ref={(mbl) => {
-                      navRefsMbl.current[index] = mbl;
-                    }}
-                    className="border-3 mt-4 rounded opacity-0"
-                  ></span>
-                </li>
-              </ul>
-            )
-          )}
+                  className="border-3 mt-4 rounded opacity-0"
+                ></span>
+              </li>
+            </ul>
+          ))}
         </div>
       </div>
     </>

@@ -19,16 +19,16 @@ const App = () => {
       </div>
 
       {/* Herosection  */}
-      <div id="home" class="font-grotesk pt-15 min-h-screen bg-white">
-        <div class=" absolute inset-0 grid-overlay pointer-events-none"></div>
-        <div class=" z-10">
+      <div id="home" className="font-grotesk pt-15 min-h-screen bg-white">
+        <div className=" absolute inset-0 grid-overlay pointer-events-none"></div>
+        <div className=" z-10">
           <HeroSection />
         </div>
       </div>
 
       {/* About Section  */}
       <div className="font-grotesk relative  min-h-screen bg-white">
-        <div class=" absolute inset-0 grid-overlay pointer-events-none"></div>
+        <div className=" absolute inset-0 grid-overlay pointer-events-none"></div>
         <div className="about">
           <About />
         </div>
@@ -36,7 +36,7 @@ const App = () => {
 
       {/* SKills Section  */}
       <div className="font-grotesk relative  min-h-screen bg-white">
-        <div class=" absolute inset-0 grid-overlay pointer-events-none"></div>
+        <div className=" absolute inset-0 grid-overlay pointer-events-none"></div>
         <div className="about">
           <Skills />
         </div>
@@ -44,7 +44,7 @@ const App = () => {
 
       {/* Projects Section  */}
       <div className="font-grotesk relative  min-h-screen bg-white">
-        <div class=" absolute inset-0 grid-overlay pointer-events-none"></div>
+        <div className=" absolute inset-0 grid-overlay pointer-events-none"></div>
         <div className="about">
           <Projects/>
         </div>
@@ -52,7 +52,7 @@ const App = () => {
 
       {/* FAQs Section  */}
       <div className="font-grotesk relative min-h-screen w-full bg-white">
-        <div class=" absolute inset-0 grid-overlay pointer-events-none"></div>
+        <div className=" absolute inset-0 grid-overlay pointer-events-none"></div>
         <div className="">
           <FAQ/>
         </div>
@@ -60,7 +60,7 @@ const App = () => {
       
       {/* Contact Section  */}
       <div className="font-grotesk relative  min-h-screen bg-white">
-        <div class=" absolute inset-0 grid-overlay pointer-events-none"></div>
+        <div className=" absolute inset-0 grid-overlay pointer-events-none"></div>
         <div className="">
           <Contact/>
         </div>
@@ -68,7 +68,7 @@ const App = () => {
 
       {/* Footer Section  */}
       <div className="font-grotesk relative  bg-white">
-        <div class=" absolute inset-0 grid-overlay pointer-events-none"></div>
+        <div className=" absolute inset-0 grid-overlay pointer-events-none"></div>
         <div className="">
           <Footer/>
         </div>
